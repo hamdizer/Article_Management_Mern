@@ -1,0 +1,25 @@
+version: '3'
+services:
+  # Express App Service
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mongo
+    environment:
+      - PORT=8000
+      - MONGO_URL=mongodb://mongo:27017
+      - JWT_SECRET=SECRET
+      - REFRESH_TOKEN_SECRET=SECRET
+
+  # MongoDB Service
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+
+
+
